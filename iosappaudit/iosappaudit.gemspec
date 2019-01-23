@@ -1,34 +1,14 @@
-
-lib = File.expand_path("../lib", __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "iosappaudit/version"
-
 Gem::Specification.new do |spec|
-  spec.name          = "iosappaudit"
-  spec.version       = Iosappaudit::VERSION
-  spec.authors       = ["Gaétan Zanella"]
-  spec.email         = ["gaetan.zanella@fabernovel.com"]
-
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
-
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against " \
-      "public gem pushes."
-  end
-
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(test|spec|features)/})
-  end
-  spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
-
-  spec.add_development_dependency "bundler", "~> 1.16"
-  spec.add_development_dependency "rake", "~> 10.0"
+  s.name        = 'iosappaudit'
+  s.version     = '1.0.0'
+  s.executables << 'ccios'
+  s.date        = '2019-01-23'
+  s.summary     = "Audit"
+  s.description = "Audit"
+  s.authors     = ["Gaétan Zanella"]
+  s.email       = 'gaetan.zanella@gmail.com'
+  # use `git ls-files -coz -x *.gem` for development
+  s.files       = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  s.homepage    = 'http://rubygems.org/gems/hola'
+  s.license     = 'MIT'
 end
