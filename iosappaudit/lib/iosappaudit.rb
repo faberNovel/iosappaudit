@@ -1,5 +1,14 @@
 require 'optparse'
-require_relative "iosappaudit/complexity_report_parser.rb"
+require 'byebug'
+require 'xcodeproj'
+require 'rexml/document'
+
+require_relative "iosappaudit/Review/complexity_report.rb"
+require_relative "iosappaudit/Review/complexity_report_parser.rb"
+require_relative "iosappaudit/Review/complexity_reviewer.rb"
+require_relative "iosappaudit/Review/project_report.rb"
+require_relative "iosappaudit/Review/project_reviewer.rb"
+require_relative "iosappaudit/Helper/file_seeker.rb"
 
 options = {}
 OptionParser.new do |parser|
@@ -8,6 +17,8 @@ OptionParser.new do |parser|
     end
 end.parse!
 
-complexity_parser = ComplexityReportParser.new
+project_reviewer = Review::ProjectReviewer.new
+project_report = project_reviewer.review_folder options[:url]
 
-complexity_report = complexity_parser.parse_file options[:url]
+complexity_reviewer = Review::ComplexityReviewer.new
+complexity_report = complexity_reviewer.review_folder options[:url]
