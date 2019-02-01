@@ -4,6 +4,11 @@ module Helper
         def initialize()
         end
 
+
+        def find_files(url, name, extension)
+            Dir.glob("#{url}/**/#{name}.#{extension}")
+        end
+
         def find_files_with_extension(url, extension)
             Dir.glob("#{url}/**/*.#{extension}")
         end

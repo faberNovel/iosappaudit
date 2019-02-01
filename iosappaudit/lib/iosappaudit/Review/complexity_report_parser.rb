@@ -42,7 +42,7 @@ module Review
         metric.ncss = values[1].text.to_i
         metric.ccn = values[2].text.to_i
         metric.functions = values[3].text.to_i
-        function_measure.metrics.push metric
+        file_measure.metrics.push metric
       end
       ComplexityReport.new function_measure, file_measure
     end
