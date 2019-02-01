@@ -8,7 +8,9 @@ module Review
             lizard_report = "lizard-report.xml"
             `lizard --xml #{url} > #{lizard_report}`
             parser = ComplexityReportParser.new
-            parser.parse_file lizard_report
+            report = parser.parse_file lizard_report
+            FileUtils.rm lizard_report
+            report
         end
     end
 end

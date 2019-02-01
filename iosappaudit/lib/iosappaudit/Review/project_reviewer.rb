@@ -31,6 +31,7 @@ module Review
             report.unit_test_target_name = unit_test_target&.name
             report.ui_test_target_files = ui_test_target&.source_build_phase&.files&.map { |file| file.display_name }
             report.unit_test_target_files = unit_test_target&.source_build_phase&.files&.map { |file| file.display_name }
+            return report
         end
     end
 end

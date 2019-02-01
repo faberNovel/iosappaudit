@@ -1,0 +1,29 @@
+section:
+  project:
+    title: Project
+    row:
+      name: Name
+      version: Version
+      deployment_target: Deployment Target
+  settings:
+    title: Settings
+    row:
+      schemes: Schemes
+      targets: Targets
+      configurations: Configurations
+  complexity:
+    title: Code
+    row:
+      file_count: Files
+      code_line_count: Lines of code
+      comment_line_count: Comments
+  resources:
+    title: Resources
+    row:
+      xib_count: Xibs
+      storyboards: Storyboards
+  tests:
+    title: Tests
+    row:
+      unit_tests: Unit Tests
+      ui_tests: UI Tests
