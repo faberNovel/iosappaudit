@@ -30,9 +30,14 @@ module Presenter
                 csv << arrayRow(t.section.complexity.row.obj_c_file_count, @project_report.main_target_obj_c_files, false)
                 csv << valueRow(t.section.complexity.row.code_line_count, @complexity_report.file_measure.sum_ncss)
                 csv << valueRow(t.section.complexity.row.comment_line_count, @complexity_report.file_measure.sum_ccn)
+                file_line_count_threshold = options.complexity&.file_line_count_threshold
+                if !file_line_count_threshold.nil?
+                    files = @complexity_report.files_with_more_than_count_lines file_line_count_threshold
+                    csv << arrayRow(t.section.complexity.row.file_count_threshold(file_line_count_threshold), files, false)
+                end
                 # Resources
                 csv << section(t.section.resources.title)
-                csv << arrayRow(t.section.resources.row.xib_count, @project_report.xibs)
+                csv << arrayRow(t.section.resources.row.xib_count, @project_report.xibs, false)
                 csv << arrayRow(t.section.resources.row.storyboards, @project_report.storyboards)
                 # Tests
                 csv << section(t.section.tests.title)

@@ -58,5 +58,9 @@ module Review
             @function_measure = function_measure 
             @file_measure = file_measure
         end
+
+        def files_with_more_than_count_lines(count)
+            file_measure.metrics.select { |metric| metric.ncss >= count  }.map { |metric| metric.file_url } 
+        end
     end
 end

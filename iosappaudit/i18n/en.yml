@@ -15,6 +15,9 @@ section:
     title: Code
     row:
       file_count: Files
+      file_count_threshold: !!pl
+        1: Files with more than one line
+        n: Files with more than %1 lines
       swift_file_count: Swift files
       obj_c_file_count: Objc files
       code_line_count: Lines of code
