@@ -6,8 +6,8 @@ module Review
 
         def review_folder(options)
             file_seeker = Helper::FileSeeker.new
-            url = options["project"]
-            project_name = options["xcodeproj"]&["name"]
+            url = options.project
+            project_name = options.xcodeproj&.name
             urls = []
             if !project_name
                 urls = file_seeker.find_files_with_extension url, "xcodeproj"
@@ -28,7 +28,7 @@ module Review
             report.deployment_target = root_object.targets.map { |target| target.deployment_target }.uniq
             report.target_names = root_object.targets.map &:name
             report.configuration_names = root_object.targets.flat_map { |target| target.build_configurations.map(&:name) }.uniq
-            main_target_name = options['xcodeproj']&['main_target_name']
+            main_target_name = options.xcodeproj&.main_target_name
             main_target = nil
             if !main_target_name
                 main_target = root_object.targets[0]

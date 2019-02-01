@@ -9,15 +9,14 @@ module Presenter
             root = File.expand_path '../../..', File.dirname(__FILE__)
             R18n.default_places = "#{root}/i18n/"
             R18n.set('en')
-            byebug
         end
 
-        def generate_review(url)
+        def generate_review(options)
+            url = options.csv_output.nil? ? "report.csv" : options.csv_output
             CSV.open(url, "wb") do |csv|
                 # Project
                 csv << section(t.section.project.title)
                 csv << valueRow(t.section.project.row.name, @project_report.name)
-
                 csv << valueRow(t.section.project.row.version, @project_report.version)
                 csv << valueRow(t.section.project.row.deployment_target, @project_report.deployment_target.first)
                 # Settings
@@ -27,12 +26,18 @@ module Presenter
                 # Complexity
                 csv << section(t.section.complexity.title)
                 csv << arrayRow(t.section.complexity.row.file_count, @project_report.main_target_files, false)
+                csv << arrayRow(t.section.complexity.row.swift_file_count, @project_report.main_target_swift_files, false)
+                csv << arrayRow(t.section.complexity.row.obj_c_file_count, @project_report.main_target_obj_c_files, false)
                 csv << valueRow(t.section.complexity.row.code_line_count, @complexity_report.file_measure.sum_ncss)
                 csv << valueRow(t.section.complexity.row.comment_line_count, @complexity_report.file_measure.sum_ccn)
                 # Resources
+                csv << section(t.section.resources.title)
+                csv << arrayRow(t.section.resources.row.xib_count, @project_report.xibs)
+                csv << arrayRow(t.section.resources.row.storyboards, @project_report.storyboards)
+                # Tests
                 csv << section(t.section.tests.title)
-                csv << arrayRow(t.section.tests.row.unit_tests, @project_report.unit_test_target_files, false)
-                csv << arrayRow(t.section.tests.row.ui_tests, @project_report.ui_test_target_files, false)
+                csv << arrayRow(t.section.tests.row.unit_tests, @project_report.unit_test_target_files)
+                csv << arrayRow(t.section.tests.row.ui_tests, @project_report.ui_test_target_files)
             end
         end
 

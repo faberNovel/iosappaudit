@@ -17,12 +17,20 @@ module Review
             @unit_test_target_files = []
         end
 
+        def main_target_swift_files
+            main_target_files.select { |file| file.include?(".swift") } 
+        end
+
+        def main_target_obj_c_files
+            main_target_files.select { |file| file.include?(".m") } 
+        end
+
         def has_swift_files?
-            main_target_files.any? { |file| file.include?(".swift") }
+            main_target_swift_files.empty?
         end
 
         def has_obj_c_files?
-            main_target_files.any? { |file| file.include?(".h") }
+            main_target_obj_c_files.empty?
         end
 
         def xibs

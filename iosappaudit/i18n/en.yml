@@ -15,6 +15,8 @@ section:
     title: Code
     row:
       file_count: Files
+      swift_file_count: Swift files
+      obj_c_file_count: Objc files
       code_line_count: Lines of code
       comment_line_count: Comments
   resources:

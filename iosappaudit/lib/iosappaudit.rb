@@ -5,6 +5,7 @@ require 'rexml/document'
 require 'r18n-core'
 require 'CSV'
 require 'yaml'
+require 'JSON'
 
 require_relative "iosappaudit/Review/complexity_report.rb"
 require_relative "iosappaudit/Review/complexity_report_parser.rb"
@@ -21,7 +22,7 @@ OptionParser.new do |parser|
     end
 end.parse!
 
-properties = YAML.load_file(options[:url])
+properties = JSON.parse(YAML::load_file(options[:url]).to_json, object_class: OpenStruct)
 
 project_reviewer = Review::ProjectReviewer.new
 project_report = project_reviewer.review_folder properties
@@ -29,6 +30,5 @@ project_report = project_reviewer.review_folder properties
 complexity_reviewer = Review::ComplexityReviewer.new
 complexity_report = complexity_reviewer.review_folder properties
 
-csv_url = "report.csv"
 presenter = Presenter::CSVReportPresenter.new(project_report, complexity_report)
-presenter.generate_review csv_url
+presenter.generate_review properties
