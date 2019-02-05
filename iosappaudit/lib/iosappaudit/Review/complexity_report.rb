@@ -60,7 +60,11 @@ module Review
         end
 
         def files_with_more_than_count_lines(count)
-            file_measure.metrics.select { |metric| metric.ncss >= count  }.map { |metric| metric.file_url } 
+            file_measure.metrics.select { |metric| metric.ncss >= count }.map { |metric| metric.file_url } 
+        end
+
+        def files_sorted_by_ccn
+            file_measure.metrics.sort { |lhs, rhs| lhs.ccn <=> rhs.ccn * -1 }.map { |metric| metric.file_url } 
         end
     end
 end

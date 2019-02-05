@@ -21,7 +21,7 @@ section:
       swift_file_count: Swift files
       obj_c_file_count: Objc files
       code_line_count: Lines of code
-      comment_line_count: Comments
+      ccn_line_count: Cyclomatic Complexity Number
   resources:
     title: Resources
     row:

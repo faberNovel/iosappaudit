@@ -30,5 +30,5 @@ project_report = project_reviewer.review_folder properties
 complexity_reviewer = Review::ComplexityReviewer.new
 complexity_report = complexity_reviewer.review_folder properties
 
-presenter = Presenter::CSVReportPresenter.new(project_report, complexity_report)
-presenter.generate_review properties
+presenter = Presenter::CSVReportPresenter.new properties, project_report, complexity_report
+presenter.generate_review
