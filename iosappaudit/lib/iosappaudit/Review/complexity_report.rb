@@ -59,12 +59,12 @@ module Review
             @file_measure = file_measure
         end
 
-        def files_with_more_than_count_lines(count)
-            file_measure.metrics.select { |metric| metric.ncss >= count }.map { |metric| metric.file_url } 
+        def file_metrics_with_more_than_count_lines(count)
+            file_measure.metrics.select { |metric| metric.ncss >= count }.sort { |lhs, rhs| (lhs.ncss <=> rhs.ncss) * -1 }
         end
 
-        def files_sorted_by_ccn
-            file_measure.metrics.sort { |lhs, rhs| lhs.ccn <=> rhs.ccn * -1 }.map { |metric| metric.file_url } 
+        def file_metrics_sorted_by_ccn
+            file_measure.metrics.sort { |lhs, rhs| (lhs.ccn <=> rhs.ccn) * -1 }
         end
     end
 end

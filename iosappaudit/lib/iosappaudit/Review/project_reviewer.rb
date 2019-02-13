@@ -5,7 +5,6 @@ module Review
         end
 
         def review_folder(options)
-            puts "Reviewing Xcode project..."
             file_seeker = Helper::FileSeeker.new
             url = options[:project_url]
             project_name = options[:xcodeproj][:name]
@@ -20,6 +19,8 @@ module Review
             end
             report = ProjectReport.new
             project = Xcodeproj::Project.open urls.first
+            project_basename = File.basename(urls.first)
+            puts "Reviewing #{project_basename}..."
             root_object = project.root_object
             if root_object.targets.empty?
                 raise "Xcode project #{root_object.name} has no target"
