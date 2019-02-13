@@ -13,7 +13,7 @@ module Presenter
         end
 
         def generate_review
-            url = @options.csv_output.nil? ? "report.csv" : @options.csv_output
+            url = @options[:csv_output]
             CSV.open(url, "wb") do |csv|
                 # Project
                 csv << section(t.section.project.title)
@@ -30,8 +30,8 @@ module Presenter
                 csv << arrayRow(t.section.complexity.row.swift_file_count, @project_report.main_target_swift_files)
                 csv << arrayRow(t.section.complexity.row.obj_c_file_count, @project_report.main_target_obj_c_files)
                 csv << valueRow(t.section.complexity.row.code_line_count, @complexity_report.file_measure.sum_ncss)
-                file_line_count_threshold = @options.complexity&.file_line_count_threshold
-                files = @complexity_report.files_with_more_than_count_lines file_line_count_threshold&.nil? ? 500 : file_line_count_threshold
+                file_line_count_threshold = @options[:complexity][:file_line_count_threshold]
+                files = @complexity_report.files_with_more_than_count_lines @options[:complexity][:file_line_count_threshold]
                 csv << arrayRow(t.section.complexity.row.file_count_threshold(file_line_count_threshold), files)
                 csv << valueRow(t.section.complexity.row.ccn_line_count, @complexity_report.file_measure.sum_ccn, @complexity_report.files_sorted_by_ccn)
                 # Resources
@@ -60,13 +60,12 @@ module Presenter
             if array.nil?
                 return [title, 0]
             end
-            size = @options.output_format&.size.nil? ? 0 : @options.output_format.size
+            size = @options[:output_format][:size]
             return format_row [title, array.count, array.first(size)]
         end
 
         def format_row(array)
-            adds_row_padding = @options.output_format&.adds_row_padding
-            if adds_row_padding&.nil? || adds_row_padding
+            if @options[:output_format][:adds_row_padding]
                 array.unshift("")
             end
             array

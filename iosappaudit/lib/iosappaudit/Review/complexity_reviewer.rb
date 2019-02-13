@@ -6,7 +6,7 @@ module Review
 
         def review_folder(options)
             lizard_report = "lizard-report.xml"
-            source = options.project + "/#{options.sources}"
+            source = options[:sources_url]
             `lizard -m --xml #{source} > #{lizard_report}`
             parser = ComplexityReportParser.new
             report = parser.parse_file lizard_report

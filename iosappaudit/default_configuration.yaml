@@ -1,0 +1,11 @@
+project_url: "" # required
+sources_url: "" # required
+xcodeproj:
+  name: "" # first xcodeproj found will be used if empty
+  main_target_name: "" # first target will be used if empty
+complexity:
+  file_line_count_threshold: 500
+output_format:
+  adds_row_padding: true
+  size: 0
+csv_output: audit.csv
