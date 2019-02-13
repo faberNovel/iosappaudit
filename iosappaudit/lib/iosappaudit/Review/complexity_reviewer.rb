@@ -5,6 +5,7 @@ module Review
         end
 
         def review_folder(options)
+            puts "Reviewing source complexity... "
             lizard_report = "lizard-report.xml"
             source = options[:sources_url]
             `lizard -m --xml #{source} > #{lizard_report}`

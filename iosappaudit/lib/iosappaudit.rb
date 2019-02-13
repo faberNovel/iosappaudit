@@ -7,6 +7,7 @@ require 'CSV'
 require 'yaml'
 require 'JSON'
 require 'fileutils'
+require 'colorize'
 
 require_relative "iosappaudit/Review/complexity_report.rb"
 require_relative "iosappaudit/Review/complexity_report_parser.rb"

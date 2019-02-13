@@ -13,5 +13,6 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.add_dependency "xcodeproj", "~> 1.4"
   s.add_dependency "r18n-core", "~> 3.2"
+  s.add_dependency "colorize", "~> 0.8"
   s.add_development_dependency "byebug", "~> 10.0"
 end

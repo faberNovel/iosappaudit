@@ -13,6 +13,7 @@ module Presenter
         end
 
         def generate_review
+            puts "Generating csv review..."
             url = @options[:csv_output]
             CSV.open(url, "wb") do |csv|
                 # Project
@@ -43,6 +44,7 @@ module Presenter
                 csv << arrayRow(t.section.tests.row.unit_tests, @project_report.unit_test_target_files)
                 csv << arrayRow(t.section.tests.row.ui_tests, @project_report.ui_test_target_files)
             end
+            puts "Report #{url} created 🎉".colorize(:green)
         end
 
         def section(title)

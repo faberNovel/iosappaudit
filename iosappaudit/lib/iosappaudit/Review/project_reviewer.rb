@@ -5,6 +5,7 @@ module Review
         end
 
         def review_folder(options)
+            puts "Reviewing Xcode project..."
             file_seeker = Helper::FileSeeker.new
             url = options[:project_url]
             project_name = options[:xcodeproj][:name]
