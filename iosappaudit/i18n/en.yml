@@ -5,6 +5,7 @@ section:
       name: Name
       version: Version
       deployment_target: Deployment Target
+      localizations: Localizations
   settings:
     title: Settings
     row:
@@ -19,7 +20,7 @@ section:
         1: Files with more than one line
         n: Files with more than %1 lines
       swift_file_count: Swift files
-      obj_c_file_count: Objc files
+      obj_c_file_count: Objective C files
       code_line_count: Lines of code
       ccn_line_count: Cyclomatic Complexity Number
   resources:

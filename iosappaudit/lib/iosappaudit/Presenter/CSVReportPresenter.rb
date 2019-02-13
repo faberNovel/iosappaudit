@@ -21,6 +21,7 @@ module Presenter
                 csv << value_row(t.section.project.row.name, @project_report.name)
                 csv << value_row(t.section.project.row.version, @project_report.version)
                 csv << value_row(t.section.project.row.deployment_target, @project_report.deployment_target.first)
+                csv << array_row(t.section.project.row.localizations, @project_report.localizations)
                 # Settings
                 csv << section(t.section.settings.title)
                 csv << array_row(t.section.settings.row.targets, @project_report.target_names)

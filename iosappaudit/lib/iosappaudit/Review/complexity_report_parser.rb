@@ -32,9 +32,9 @@ module Review
       file_measure.average_ncss = file_xml.elements["average[@label='NCSS']"]["value"].to_s.to_f
       file_measure.average_ccn = file_xml.elements["average[@label='CCN']"]["value"].to_s.to_f
       file_measure.average_functions = file_xml.elements["average[@label='Functions']"]["value"].to_s.to_f
-      file_measure.sum_ncss = file_xml.elements["sum[@label='NCSS']"]["value"].to_s.to_f
-      file_measure.sum_ccn = file_xml.elements["sum[@label='CCN']"]["value"].to_s.to_f
-      file_measure.sum_functions = file_xml.elements["sum[@label='Functions']"]["value"].to_s.to_f
+      file_measure.sum_ncss = file_xml.elements["sum[@label='NCSS']"]["value"].to_s.to_i
+      file_measure.sum_ccn = file_xml.elements["sum[@label='CCN']"]["value"].to_s.to_i
+      file_measure.sum_functions = file_xml.elements["sum[@label='Functions']"]["value"].to_s.to_i
       file_xml.elements.each("item") do |item|
         values = item.get_elements("value")
         metric = FileMetric.new

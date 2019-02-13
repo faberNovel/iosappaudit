@@ -26,10 +26,10 @@ module Review
                 raise "Xcode project #{root_object.name} has no target"
             end
             report.name = root_object.name
-            report.version = project.object_version
             report.deployment_target = root_object.targets.map { |target| target.deployment_target }.uniq
             report.target_names = root_object.targets.map &:name
             report.configuration_names = root_object.targets.flat_map { |target| target.build_configurations.map(&:name) }.uniq
+            report.localizations = findLocalizations project
             main_target_name = options[:xcodeproj][:main_target_name]
             main_target = nil
             if main_target_name.empty?
@@ -40,6 +40,7 @@ module Review
                     raise "Xcode target named #{main_target_name} not found"
                 end
             end
+            report.version = project.build_configurations.map { |config| config.build_settings["CURRENT_PROJECT_VERSION"] }.uniq.first
             ui_test_target = root_object.targets.detect { |target| target.build_configurations.any? { |config| !config.build_settings["TEST_TARGET_NAME"].nil? }  }
             unit_test_target = root_object.targets.detect { |target| target.build_configurations.any? { |config| !config.build_settings["TEST_HOST"].nil? }  }
             report.main_target_name = main_target&.name
@@ -49,7 +50,13 @@ module Review
             report.unit_test_target_name = unit_test_target&.name
             report.ui_test_target_files = ui_test_target&.source_build_phase&.files&.map { |file| file.display_name }
             report.unit_test_target_files = unit_test_target&.source_build_phase&.files&.map { |file| file.display_name }
+            byebug
             return report
+        end
+
+        def findLocalizations(project)
+            files = project.files.select { |f| f.path.include?("Localizable.strings")  }
+            files.map { |f| f.name.nil? ? "base" : f.name }.uniq
         end
     end
 end
