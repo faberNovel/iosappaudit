@@ -41,10 +41,14 @@ output_format:
 csv_output: example.csv
 ```
 
-Only `project_url` and `sources_url` are required.
+Only `project_url` and `sources_url` are required. Example:
+```yaml
+project_url: /.../Project
+sources_url: /.../Project/Classes
+```
 
 Then launch the review :
 
 ```
-iosappaudit example.yaml
+iosappaudit -o example.yaml
 ```
