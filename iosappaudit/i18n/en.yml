@@ -1,0 +1,35 @@
+section:
+  project:
+    title: Project
+    row:
+      name: Name
+      version: Version
+      deployment_target: Deployment Target
+      localizations: Localizations
+  settings:
+    title: Settings
+    row:
+      schemes: Schemes
+      targets: Targets
+      configurations: Configurations
+  complexity:
+    title: Code
+    row:
+      file_count: Files
+      file_count_threshold: !!pl
+        1: Files with more than one line
+        n: Files with more than %1 lines
+      swift_file_count: Swift files
+      obj_c_file_count: Objective C files
+      code_line_count: Lines of code
+      ccn_line_count: Cyclomatic Complexity Number
+  resources:
+    title: Resources
+    row:
+      xib_count: Xibs
+      storyboards: Storyboards
+  tests:
+    title: Tests
+    row:
+      unit_tests: Unit Tests
+      ui_tests: UI Tests
