@@ -1,5 +1,4 @@
 require 'optparse'
-require 'byebug'
 require 'xcodeproj'
 require 'rexml/document'
 require 'r18n-core'
