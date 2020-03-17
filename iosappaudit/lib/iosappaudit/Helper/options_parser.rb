@@ -1,7 +1,7 @@
 module Helper
     class OptionsParser
         def parse(options)
-            default_properties = JSON.parse(YAML::load_file("../default_configuration.yaml").to_json, object_class: Hash)
+            default_properties = JSON.parse(YAML::load_file(__dir__ + "/../../../default_configuration.yaml").to_json, object_class: Hash)
             properties = JSON.parse(YAML::load_file(options[:url]).to_json, object_class: Hash)
             default_properties.merge! properties
             symbolizeOptions default_properties
